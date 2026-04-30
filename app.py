@@ -21,18 +21,33 @@ def pozdrav_post():
 
 	name=None
 	surname=None
+	heslo=None
+	zprava=None
+	valid=False
 
 	if request.method=="POST":
 		name=request.form.get("name")
 		surname=request.form.get("surname")
-		heslo=request.form.get("heslo")
 
-		if heslo==SPRAVNE_HESLO:
-			tajna_zprava="Zítra přiletí mimozemšťané!"
+		if not name or not surname:
+			zprava="Musíš zadat jméno i příjmení!"
+
+		elif len(name) > 50:
+			zprava="Jméno smí být maximálně 50 znaků dlouhé!"
+
+		elif len(surname) > 50:
+			zprava="Příjmení smí být maximálně 50 znaků dlouhé!"
+		
 		else:
-			tajna_zprava="Nesprávné heslo!"
+			valid=True
+			heslo=request.form.get("heslo")
 
-	return render_template("pozdrav_post.html", date=date, name=name, surname=surname, tajna_zprava=tajna_zprava)
+			if heslo==SPRAVNE_HESLO:
+				zprava="Zítra přiletí mimozemšťané!"
+			else:
+				zprava="Nesprávné heslo!"
+
+	return render_template("pozdrav_post.html", date=date, name=name, surname=surname, zprava=zprava, valid=valid)
 
 if __name__=="__main__":
 	app.run(debug=True)

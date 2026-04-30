@@ -7,7 +7,7 @@
 <body>
 	Ahoj, dnes je {{ date }}.
 	<hr>
-	{% if name %}
+	{% if valid %}
 		<strong>{{ name }} {{ surname }}, rád tě vidím!</strong><hr>
 	{% endif %}
 
@@ -19,8 +19,8 @@
 		<button type="submit">Pozdrav mě!</button>
 	</form>
 
-	{% if tajna_zprava %}
-		<p>{{ tajna_zprava }}</p>
+	{% if zprava %}
+		<p>{{ zprava }}</p>
 	{% endif %}
 
 </body>

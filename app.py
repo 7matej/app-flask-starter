@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime
 
+SPRAVNE_HESLO="12345678"
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
@@ -24,8 +25,14 @@ def pozdrav_post():
 	if request.method=="POST":
 		name=request.form.get("name")
 		surname=request.form.get("surname")
+		heslo=request.form.get("heslo")
 
-	return render_template("pozdrav_post.html", date=date, name=name, surname=surname)
+		if heslo==SPRAVNE_HESLO:
+			tajna_zprava="Zítra přiletí mimozemšťané!"
+		else:
+			tajna_zprava="Nesprávné heslo!"
+
+	return render_template("pozdrav_post.html", date=date, name=name, surname=surname, tajna_zprava=tajna_zprava)
 
 if __name__=="__main__":
 	app.run(debug=True)

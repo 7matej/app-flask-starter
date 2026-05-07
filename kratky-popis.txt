@@ -1,0 +1,1 @@
+Nejtěžší pro mě bylo zprovoznit validaci vstupů. Povedlo se mi uvést do chodu aplikaci na Renderu. Myslím si, že se mi také povedlo vytvořit cesty.
